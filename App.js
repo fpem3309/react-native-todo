@@ -78,6 +78,7 @@ export default function App() {
 
       <View>
 
+        <Image style={{ width: 300, height: 300 }} />
         <TextInput
           onSubmitEditing={addToto}
           onChangeText={onChangeText}
