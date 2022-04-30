@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView, Alert } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView, Alert, Image } from 'react-native';
 import { useState, useEffect } from 'react';
 import { theme } from './colors';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -19,6 +19,13 @@ export default function App() {
   const busi = () => setBusiness(true);
   const Life = () => setBusiness(false);
   const onChangeText = (payload) => setText(payload);
+
+  const testToDos = async (toSave) => {
+    await AsyncStorage.getItem(STORAGE_KEY, JSON.stringify(toSave))
+  };
+
+
+
   const saveToDos = async (toSave) => {
     await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(toSave))
   };
@@ -46,6 +53,8 @@ export default function App() {
     await saveToDos(newToDos);
     setText("");
   };
+
+
   const deleteToDo = (key) => {
     Alert.alert("Delete To DO?", "Are you sure?", [
       { text: "Cancle" },
@@ -68,22 +77,33 @@ export default function App() {
 
       <View style={styles.header}>
         <TouchableOpacity onPress={busi}>
-          <Text style={{ ...styles.btnText, color: business ? "white" : theme.grey }}>Businees</Text>
+          <Text style={{
+            ...styles.btnText,
+            color: business ? "white" : theme.grey
+          }}>
+            Businees
+          </Text>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={Life}>
-          <Text style={{ ...styles.btnText, color: !business ? "white" : theme.grey }}>Life</Text>
+          <Text style={{
+            ...styles.btnText,
+            color: !business ? "white" : theme.grey
+          }}>
+            Life
+          </Text>
         </TouchableOpacity>
       </View>
 
       <View>
 
-        <Image style={{ width: 300, height: 300 }} />
         <TextInput
           onSubmitEditing={addToto}
           onChangeText={onChangeText}
           returnKeyType="done"
-          placeholder={business ? "Add a To Do" : "How are you today?"}
+          placeholder={
+            business ? "Add a To Do" : "How are you today?"
+          }
           value={text}
           style={styles.input} />
 
