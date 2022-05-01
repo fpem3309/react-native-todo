@@ -96,6 +96,9 @@ export default function App() {
       </View>
 
       <View>
+        <Text> Date.now()</Text>
+      </View>
+      <View>
 
         <TextInput
           onSubmitEditing={addToto}
