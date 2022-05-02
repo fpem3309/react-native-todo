@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { theme } from './colors';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Fontisto } from '@expo/vector-icons';
+import Nav from './nav';
 
 export default function App() {
 
@@ -19,12 +20,6 @@ export default function App() {
   const busi = () => setBusiness(true);
   const Life = () => setBusiness(false);
   const onChangeText = (payload) => setText(payload);
-
-  const testToDos = async (toSave) => {
-    await AsyncStorage.getItem(STORAGE_KEY, JSON.stringify(toSave))
-  };
-
-
 
   const saveToDos = async (toSave) => {
     await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(toSave))
@@ -95,9 +90,7 @@ export default function App() {
         </TouchableOpacity>
       </View>
 
-      <View>
-        <Text> Date.now()</Text>
-      </View>
+
       <View>
 
         <TextInput
@@ -122,7 +115,11 @@ export default function App() {
           ))}
         </ScrollView>
 
+        <Nav />
+
       </View>
+
+
     </View>
   );
 }
@@ -166,4 +163,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "500",
   },
+
 });
