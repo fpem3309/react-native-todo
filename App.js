@@ -40,7 +40,7 @@ export default function App() {
     //   { [Date.now()]: { text, busi: business } });  //새로운 todo 합침
 
     const newToDos = {
-      ...toDos,
+      ...toDos,   // spread 문법
       [Date.now()]: { text, business },
     };
 
