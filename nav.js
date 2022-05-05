@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView, Alert, Image } from 'react-native';
 import { useState, useEffect } from 'react';
 import { theme } from './colors';
+import { Calendar } from 'react-calendar';
 
 const touchtest = () => {
     Alert.alert("touch");

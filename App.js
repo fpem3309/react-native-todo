@@ -18,8 +18,8 @@ export default function App() {
     loadToDos();
   }, []);
 
-  const busi = () => setBusiness(true);
-  const Life = () => setBusiness(false);
+  const busi = () => { setBusiness(true), setCalender(false) };
+  const Life = () => { setBusiness(false), setCalender(false) };
   const Cal = () => setCalender(true);
 
   const onChangeText = (payload) => setText(payload);
@@ -70,6 +70,7 @@ export default function App() {
 
   }
   return (
+
     <View style={styles.container}>
       <StatusBar style="auto" />
 
@@ -98,35 +99,35 @@ export default function App() {
             color: calender ? "white" : theme.grey
           }}>Calender</Text>
         </TouchableOpacity>
-
       </View>
 
-      <View>
+      {calender === true ? <Nav /> :
+        <View>
+          <TextInput
+            onSubmitEditing={addToto}
+            onChangeText={onChangeText}
+            returnKeyType="done"
+            placeholder={
+              business ? "Add a To Do" : "How are you today?"
+            }
+            value={text}
+            style={styles.input} />
 
-        <TextInput
-          onSubmitEditing={addToto}
-          onChangeText={onChangeText}
-          returnKeyType="done"
-          placeholder={
-            business ? "Add a To Do" : "How are you today?"
-          }
-          value={text}
-          style={styles.input} />
+          <ScrollView>{
+            Object.keys(toDos).map(key => (
+              toDos[key].business === business ?
+                <View style={styles.toDo} key={key}>
+                  <Text style={styles.toDoText} >{toDos[key].text}</Text>
+                  <TouchableOpacity onPress={() => deleteToDo(key)}>
+                    <Fontisto name='trash' size={18} color={theme.grey} />
+                  </TouchableOpacity>
+                </View> : null
+            ))}
 
-        <ScrollView>{
-          Object.keys(toDos).map(key => (
-            toDos[key].business === business ?
-              <View style={styles.toDo} key={key}>
-                <Text style={styles.toDoText} >{toDos[key].text}</Text>
-                <TouchableOpacity onPress={() => deleteToDo(key)}>
-                  <Fontisto name='trash' size={18} color={theme.grey} />
-                </TouchableOpacity>
-              </View> : null
-          ))}
-        </ScrollView>
+          </ScrollView>
 
-      </View>
-
+        </View>
+      }
 
     </View>
   );
