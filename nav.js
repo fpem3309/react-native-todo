@@ -12,6 +12,14 @@ const Nav = () => {
             <TouchableOpacity onPress={() => touchtest()}>
                 <Text style={styles.test}>nav</Text>
             </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => touchtest()}>
+                <Text style={styles.test}>nav2</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => touchtest()}>
+                <Text style={styles.test}>nav3</Text>
+            </TouchableOpacity>
         </View>
     );
 };

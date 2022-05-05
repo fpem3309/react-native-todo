@@ -12,6 +12,7 @@ export default function App() {
   const [business, setBusiness] = useState(true);
   const [text, setText] = useState("");
   const [toDos, setToDos] = useState({});
+  const [calender, setCalender] = useState(false);
 
   useEffect(() => {
     loadToDos();
@@ -19,6 +20,8 @@ export default function App() {
 
   const busi = () => setBusiness(true);
   const Life = () => setBusiness(false);
+  const Cal = () => setCalender(true);
+
   const onChangeText = (payload) => setText(payload);
 
   const saveToDos = async (toSave) => {
@@ -88,8 +91,15 @@ export default function App() {
             Life
           </Text>
         </TouchableOpacity>
-      </View>
 
+        <TouchableOpacity onPress={Cal}>
+          <Text style={{
+            ...styles.btnText,
+            color: calender ? "white" : theme.grey
+          }}>Calender</Text>
+        </TouchableOpacity>
+
+      </View>
 
       <View>
 
@@ -114,8 +124,6 @@ export default function App() {
               </View> : null
           ))}
         </ScrollView>
-
-        <Nav />
 
       </View>
 
