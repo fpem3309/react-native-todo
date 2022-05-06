@@ -5,6 +5,7 @@ import { theme } from './colors';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Fontisto } from '@expo/vector-icons';
 import Nav from './nav';
+import TodoList from './todoList';
 
 export default function App() {
 
@@ -101,7 +102,7 @@ export default function App() {
         </TouchableOpacity>
       </View>
 
-      {calender === true ? <Nav /> :
+      {calender === true ? <TodoList /> :
         <View>
           <TextInput
             onSubmitEditing={addToto}
